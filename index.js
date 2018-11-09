@@ -2,8 +2,15 @@ const express = require('express');
 var cors = require('cors');
 const app = express();
 const Scratch = require('./scratchapi.js');
+
+const multer = require('multer');
+var mkdirp = require('mkdirp');
+var rimraf = require('rimraf');
+const { execFile } = require('child_process');
+const path = require('path');
+
+
 const port = process.env.PORT || 3000;
-var id = 192728047;
 
 app.use(cors());
 
@@ -21,5 +28,28 @@ app.get('/:id', function(req, res, next) {
     	});
  });
 
+app.get('/pdf_gen/:id', function(req, res, next) {
+	
+	var id = req.params.id;
+	var url = 'https://scratch.mit.edu/studios/' + id + '/';
+	//res.send(url);
+	var name = 'up' + Date.now() + '/'
+  	mkdirp(name, function(err) {});
+	const child = execFile('./run_unit2gen.sh', [url, name, 'template/'], (error, stdout, stderr) => {
+	  if (error) {
+	  	res.send("Error - try a different url.");
+	  	rimraf(name, function () { console.log('done'); });
+
+	    //throw error;
+	  }
+	  console.log(stdout);
+	  res.sendFile(path.join(__dirname, name, 'all_tests.pdf'));
+	  rimraf(name, function () { console.log('done'); });
+ 	});
+	
+
+	
+  
+});
 
 app.listen(port, function() {console.log(`Example app listening on port http://localhost:${port}/`)});
