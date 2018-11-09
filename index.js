@@ -38,9 +38,9 @@ app.get('/pdf_gen/:id', function(req, res, next) {
   	mkdirp(name, function(err) {});
 	const child = execFile('./run_unit2gen.sh', [url, name, 'template/'], (error, stdout, stderr) => {
 	  if (error) {
-	  	res.send("Error - try a different url.");
-	  	rimraf(name, function () { console.log('done'); });
-	    //next(error);
+	  	//res.send("Error - try a different url.");
+	  	//rimraf(name, function () { console.log('done'); });
+	    next(error);
 	  }
 	  else {
 	  	console.log(stdout);
