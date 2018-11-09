@@ -33,19 +33,21 @@ app.get('/pdf_gen/:id', function(req, res, next) {
 	var id = req.params.id;
 	var url = 'https://scratch.mit.edu/studios/' + id + '/';
 	//res.send(url);
+	/*
 	var name = 'up' + Date.now() + '/'
   	mkdirp(name, function(err) {});
 	const child = execFile('./run_unit2gen.sh', [url, name, 'template/'], (error, stdout, stderr) => {
 	  if (error) {
-	  	//res.send("Error - try a different url.");
-	  	//rimraf(name, function () { console.log('done'); });
-
-	    next(error);
+	  	res.send("Error - try a different url.");
+	  	rimraf(name, function () { console.log('done'); });
+	    //next(error);
 	  }
 	  console.log(stdout);
 	  res.sendFile(path.join(__dirname, name, 'all_tests.pdf'));
 	  rimraf(name, function () { console.log('done'); });
  	});
+ 	*/
+ 	res.send("test");
 	
 
 	
