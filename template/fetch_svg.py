@@ -6,6 +6,7 @@ import os
 import sys
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities 
+from selenium.webdriver.chrome.options import Options
 
 def main():
 	filename = sys.argv[1]
@@ -13,7 +14,11 @@ def main():
 	fileURL = 'file://'+str(os.path.abspath(filename+".html"))
 	d = DesiredCapabilities.CHROME
 	d['loggingPrefs'] = { 'browser':'ALL' }
-	driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+	chrome_options = Options()
+	chrome_options.add_argument('--headless')
+	chrome_options.add_argument('--no-sandbox')
+	chrome_options.add_argument('--disable-dev-shm-usage')
+	driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver',chrome_options=chrome_options)
 	# load html file
 	driver.get(fileURL)
 	#open svg file for console logs
