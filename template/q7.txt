@@ -3,7 +3,7 @@
 
 \noindent Question 7a and 7b ask about the script below:
 \begin{center}
-\includegraphics[scale=.7]{q7_script0.png}
+\includegraphics[scale=1.1]{q7_script0.png}
 \end{center}
 
 \noindent 7a. What do you do to make the script run?

@@ -478,7 +478,7 @@ def main():
 
 	#Global TeX splices for all tests
 	#Uncomment line below once picture generator is ready
-	#preamble = open("preamble.txt").read() 
+	preamble = open("preamble.txt").read() 
 	prefix = open("prefix.txt").read()
 	q1_text = open("q1text.txt").read()
 	q1_prefix = open("q1_prefix.txt").read()
@@ -694,10 +694,12 @@ def main():
 						if cleanString[0] =='u':
 							cleanString = cleanString[1:len(cleanString)]
 
+					if len(cleanString)>0:
 						#Remove the apostrophes from first and last characters
 						if cleanString[0] == '\'' and cleanString[len(cleanString)-1] == '\'':
 							cleanString = cleanString[1:len(cleanString)-1]
 
+					if len(cleanString)>0:
 						#Remove "" from first and last characters
 						if cleanString[0] == '"' and cleanString[len(cleanString)-1] == '"':
 							cleanString = cleanString[1:len(cleanString)-1]
@@ -908,9 +910,11 @@ def main():
 		#Generate custom LaTeX test for each project.
 		texFileName = project.username+'_test.tex'
 		texFile = open(texFileName,'w+')
-		texString = prefix+project.username+"\n"+q1+q2to6+ans3line+"\n"+q7tex+q7ans+suffix
-		#Switch line above for the line below once pic generator is ready
-		#texString = preamble+project.username+prefix+project.username+"\n"+q1+q2to6+ans3line+"\n"+q7tex+q7ans+suffix
+		# texString = prefix+project.username+"\n"+q1+q2to6+ans3line+"\n"+q7tex+q7ans+suffix
+		#Comment out line above once pic generator is ready
+		#Ensure username doesn't have any underscores for latex
+		tex_username = project.username.replace("_","\\textunderscore ")
+		texString = preamble+project.username+prefix+tex_username+"\n"+q1+q2to6+ans3line+"\n"+q7tex+q7ans+suffix
 		print>>texFile, texString
 
 

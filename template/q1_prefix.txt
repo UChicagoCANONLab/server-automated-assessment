@@ -1,2 +1,2 @@
 
-\includegraphics[scale=.7]{
+\includegraphics[scale=.4]{
