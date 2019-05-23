@@ -9,6 +9,7 @@ var WebSocket = require('ws');
 
 var SERVER = 'scratch.mit.edu';
 var PROJECTS_SERVER = 'projects.scratch.mit.edu';
+var S3_STUDIOS_SERVER = 'api.scratch.mit.edu';
 var CDN_SERVER = 'cdn.scratch.mit.edu';
 var CLOUD_SERVER = 'clouddata.scratch.mit.edu';
 
@@ -73,6 +74,39 @@ Scratch.getProject = function(projectId, cb) {
     }
   });
 };
+
+/// S3 additions
+/////////////////////////////////////////////////////////////////////////////////////////
+Scratch.getStudioS3 = function(studioID, offset, cb) {
+  request({
+    hostname: S3_STUDIOS_SERVER,
+    path: '/studios/' + studioID + '/projects?offset=' + offset + '/get/',
+    method: 'GET'
+  }, function(err, body, response) {
+    if (err) return cb(err);
+    try {
+      cb(null, JSON.parse(body));
+    } catch (e) {
+      cb(e);
+    }
+  });
+};
+
+Scratch.getProjectS3 = function(projectId, cb) {
+  request({
+    hostname: PROJECTS_SERVER,
+    path: projectId + '/get/',
+    method: 'GET'
+  }, function(err, body, response) {
+    if (err) return cb(err);
+    try {
+      cb(null, JSON.parse(body));
+    } catch (e) {
+      cb(e);
+    }
+  });
+};
+/////////////////////////////////////////////////////////////////////////////////////////
 
 Scratch.UserSession = function(username, id, sessionId) {
   this.username = username;
