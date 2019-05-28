@@ -19,7 +19,7 @@ app.get('/:id', function(req, res, next) {
 	    Scratch.getProject(id,function(err,project) {
 	      if(err) {
 	      	//console.log(err);
-	      	res.status(404).send("404 - cannot find.")
+	      	res.status(404).send("404 - cannot find. hi")
 	      	//res.send("Fetch error.");
 	      }
 	      else {
