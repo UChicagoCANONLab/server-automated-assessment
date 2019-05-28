@@ -59,7 +59,7 @@ function parseCookie(cookie) {
 }
 
 var Scratch = {};
-
+/*
 Scratch.getProject = function(projectId, cb) {
   request({
     hostname: PROJECTS_SERVER,
@@ -73,7 +73,7 @@ Scratch.getProject = function(projectId, cb) {
       cb(e);
     }
   });
-};
+};*/
 
 /// S3 additions
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ Scratch.getStudioS3 = function(studioID, offset, cb) {
   });
 };
 
-Scratch.getProjectS3 = function(projectId, cb) {
+Scratch.getProject = function(projectId, cb) {
   request({
     hostname: PROJECTS_SERVER,
     path: projectId + '/get/',
