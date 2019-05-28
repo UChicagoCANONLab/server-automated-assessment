@@ -30,14 +30,12 @@ app.get('/:id', function(req, res, next) {
 
 /// S3 additions
 /////////////////////////////////////////////////////////////////////////////////////////
- app.get('/studios3/:id/:offset', function(req, res, next) {
+app.get('/studios3/:id/:offset', function(req, res, next) {
 	var id = req.params.id;
 	var offset = req.params.offset;
 		Scratch.getStudioS3(id, offset, function(err,studio) {
 			if(err) {
-				//console.log(err);
 				res.status(404).send("404 - cannot find.")
-				//res.send("Fetch error.");
 			}
 			else {
 				res.send(JSON.stringify(studio));
@@ -45,13 +43,11 @@ app.get('/:id', function(req, res, next) {
 		});
 }); 
 
- app.get('/projects3/:id', function(req, res, next) {
+app.get('/projects3/:id', function(req, res, next) {
 	var id = req.params.id;
 		Scratch.getProjectS3(id,function(err,project) {
 			if(err) {
-				//console.log(err);
 				res.status(404).send("404 - cannot find.")
-				//res.send("Fetch error.");
 			}
 			else {
 				res.send(JSON.stringify(project));
