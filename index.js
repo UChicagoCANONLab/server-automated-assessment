@@ -19,9 +19,9 @@ app.get('/:id', function(req, res, next) {
     var id = req.params.id;
 	    Scratch.getProject(id,function(err,project) {
 	      if(err) {
-	      	//console.log(err);
-	      	res.status(404).send("404 - cannot find. hi")
-	      	//res.send("Fetch error.");
+	      	console.log(err);
+	      	res.status(404).send("404 - cannot find. hi");
+	      	res.send("Fetch error.");
 	      }
 	      else {
 	      	res.send(JSON.stringify(project));
@@ -36,7 +36,9 @@ app.get('/studios3/:id/:offset', function(req, res, next) {
 	var offset = req.params.offset;
 		Scratch.getStudioS3(id, offset, function(err,studio) {
 			if(err) {
-				res.status(404).send("404 - cannot find.")
+				console.log(err);
+				res.status(404).send("404 - cannot find. hi");
+				res.send("Fetch error.");
 			}
 			else {
 				res.send(JSON.stringify(studio));
