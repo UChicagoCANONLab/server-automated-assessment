@@ -13,6 +13,7 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+console.log('Hello from index.js!');
 
 app.get('/:id', function(req, res, next) {
     var id = req.params.id;
@@ -42,7 +43,7 @@ app.get('/studios3/:id/:offset', function(req, res, next) {
 			}
 		});
 }); 
-
+/*
 app.get('/projects3/:id', function(req, res, next) {
 	var id = req.params.id;
 		Scratch.getProjectS3(id,function(err,project) {
@@ -53,7 +54,7 @@ app.get('/projects3/:id', function(req, res, next) {
 				res.send(JSON.stringify(project));
 			}
 		});
-});
+});*/
 /////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/pdf_gen/:id', function(req, res, next) {
