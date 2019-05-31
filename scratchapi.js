@@ -95,7 +95,7 @@ Scratch.getStudioS3 = function(studioID, offset, cb) {
 Scratch.getProject = function(projectId, cb) {
   request({
     hostname: PROJECTS_SERVER,
-    path: projectId + '/get/',
+    path: projectId,
     method: 'GET'
   }, function(err, body, response) {
     if (err) return cb(err);
