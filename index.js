@@ -21,7 +21,6 @@ app.get('/:id', function(req, res, next) {
 	      if(err) {
 	      	console.log(err);
 	      	res.status(404).send("404 - cannot find. hi");
-	      	res.send("Fetch error.");
 	      }
 	      else {
 	      	res.send(JSON.stringify(project));
@@ -38,7 +37,6 @@ app.get('/studios3/:id/:offset', function(req, res, next) {
 			if(err) {
 				console.log(err);
 				res.status(404).send("404 - cannot find. hi ");
-				res.send("Fetch error.");
 			}
 			else {
 				res.send(JSON.stringify(studio));
