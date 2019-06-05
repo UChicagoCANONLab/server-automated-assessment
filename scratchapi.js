@@ -87,7 +87,7 @@ Scratch.getStudioS3 = function(studioID, offset, cb) {
     try {
       cb(null, JSON.parse(body));
     } catch (e) {
-      //cb(e);
+      cb(e);
     }
   });
 };
@@ -102,7 +102,7 @@ Scratch.getProject = function(projectId, cb) {
     try {
       cb(null, JSON.parse(body));
     } catch (e) {
-      //cb(e);
+      cb(e);
     }
   });
 };
