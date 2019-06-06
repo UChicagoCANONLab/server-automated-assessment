@@ -92,10 +92,10 @@ Scratch.getStudioS3 = function(studioID, offset, cb) {
   });
 };
 
-Scratch.getProject = function(projectId, cb) {
+Scratch.getProject = function(projectID, cb) {
   request({
     hostname: PROJECTS_SERVER,
-    path: projectId,
+    path: '/' + projectID,
     method: 'GET'
   }, function(err, body, response) {
     if (err) return cb(err);

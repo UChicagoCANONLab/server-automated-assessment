@@ -21,14 +21,14 @@ app.get('/scratch/project/:id', function(req, res, next) {
 	    Scratch.getProject(id,function(err,project) {
 				console.log(project);
 	      if(err) {
+					console.log('Error:');
 					console.log(err);
-					console.log('hi');
 					//res.status(404).send("404 - cannot find. hi");
 					res.send(err);
 	      }
 	      else {
-					res.send(JSON.stringify(project));
 					console.log(project);
+					res.send(JSON.stringify(project));
 	      }
     	});
  });
