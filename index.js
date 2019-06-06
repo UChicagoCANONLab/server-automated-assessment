@@ -19,6 +19,7 @@ app.get('/:id', function(req, res, next) {
 		var id = req.params.id;
 		console.log('Getting project ' + id);
 	    Scratch.getProject(id,function(err,project) {
+				console.log(project);
 	      if(err) {
 					console.log(err);
 					console.log('hi');
