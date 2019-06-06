@@ -101,7 +101,7 @@ Scratch.getProject = function(projectId, cb) {
     if (err) return cb(err);
     try {
       console.log(body);
-      cb(null, body);
+      cb(null, JSON.parse(body));
     } catch (e) {
       cb(e);
     }
