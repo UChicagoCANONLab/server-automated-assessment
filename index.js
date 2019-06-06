@@ -26,7 +26,7 @@ app.get('/:id', function(req, res, next) {
 					res.send(err);
 	      }
 	      else {
-					res.send(project);
+					res.send(JSON.stringify(project));
 					console.log('hello');
 	      }
     	});
