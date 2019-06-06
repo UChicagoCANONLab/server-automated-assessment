@@ -75,7 +75,7 @@ Scratch.getProject = function(projectId, cb) {
   });
 };*/
 
-/// S3 additions
+/// Scratch 3 changes made here
 /////////////////////////////////////////////////////////////////////////////////////////
 Scratch.getStudioS3 = function(studioID, offset, cb) {
   request({
@@ -100,7 +100,7 @@ Scratch.getProject = function(projectID, cb) {
   }, function(err, body, response) {
     if (err) return cb(err);
     try {
-      cb(null, body);
+      cb(null, JSON.parse(body));
     } catch (e) {
       cb(e);
     }

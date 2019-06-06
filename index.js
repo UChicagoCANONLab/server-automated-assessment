@@ -13,40 +13,38 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+
+/// Scratch 3 changes made here
+/////////////////////////////////////////////////////////////////////////////////////////
+
 console.log('Hello from index.js!');
 
 app.get('/scratch/project/:id', function(req, res, next) {
 		var id = req.params.id;
 		console.log('Getting project ' + id);
-	    Scratch.getProject(id,function(err,project) {
-				console.log(project);
-	      if(err) {
-					console.log('Error:');
-					console.log(err);
-					//res.status(404).send("404 - cannot find. hi");
-					res.send(err);
-	      }
-	      else {
-					console.log(project);
-					res.send(JSON.stringify(project));
-	      }
-    	});
+	    	Scratch.getProject(id, function(err, project) {
+						if (err) {
+								console.log('Error\n' + err);
+								res.status(404).send("404 - resource not found.");
+						}
+						else {
+								res.send(JSON.stringify(project));
+						}
+				});
  });
 
-/// S3 additions
-/////////////////////////////////////////////////////////////////////////////////////////
 app.get('/scratch/studio/:id/:offset', function(req, res, next) {
-	var id = req.params.id;
-	var offset = req.params.offset;
-		Scratch.getStudioS3(id, offset, function(err,studio) {
-			if(err) {
-				console.log(err);
-				//res.status(404).send("404 - cannot find. hi ");
-			}
-			else {
-				res.send(JSON.stringify(studio));
-			}
-		});
+		var id = req.params.id;
+		var offset = req.params.offset;
+				Scratch.getStudioS3(id, offset, function(err, studio) {
+					if (err) {
+							console.log('Error\n' + err);
+							res.status(404).send("404 - resource not found.");
+					}
+					else {
+							res.send(JSON.stringify(studio));
+					}
+			});
 }); 
 /*
 app.get('/projects3/:id', function(req, res, next) {
