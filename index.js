@@ -17,8 +17,6 @@ app.use(cors());
 /// Scratch 3 changes made here
 /////////////////////////////////////////////////////////////////////////////////////////
 
-console.log('Hello from index.js!');
-
 app.get('/scratch/project/:id', function(req, res, next) {
 		var id = req.params.id;
 		console.log('Getting project ' + id);
@@ -36,7 +34,8 @@ app.get('/scratch/project/:id', function(req, res, next) {
 app.get('/scratch/studio/:id/:offset', function(req, res, next) {
 		var id = req.params.id;
 		var offset = req.params.offset;
-				Scratch.getStudioS3(id, offset, function(err, studio) {
+		console.log('Getting page ' + offset + ' of studio ' + id);
+				Scratch.getStudio(id, offset, function(err, studio) {
 					if (err) {
 							console.log('Error\n' + err);
 							res.status(404).send("404 - resource not found.");
@@ -46,18 +45,7 @@ app.get('/scratch/studio/:id/:offset', function(req, res, next) {
 					}
 			});
 }); 
-/*
-app.get('/projects3/:id', function(req, res, next) {
-	var id = req.params.id;
-		Scratch.getProjectS3(id,function(err,project) {
-			if(err) {
-				res.status(404).send("404 - cannot find.")
-			}
-			else {
-				res.send(JSON.stringify(project));
-			}
-		});
-});*/
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/pdf_gen/:id', function(req, res, next) {

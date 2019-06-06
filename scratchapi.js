@@ -77,20 +77,6 @@ Scratch.getProject = function(projectId, cb) {
 
 /// Scratch 3 changes made here
 /////////////////////////////////////////////////////////////////////////////////////////
-Scratch.getStudioS3 = function(studioID, offset, cb) {
-  request({
-    hostname: S3_STUDIOS_SERVER,
-    path: '/studios/' + studioID + '/projects?offset=' + offset + '/get/',
-    method: 'GET'
-  }, function(err, body, response) {
-    if (err) return cb(err);
-    try {
-      cb(null, JSON.parse(body));
-    } catch (e) {
-      cb(e);
-    }
-  });
-};
 
 Scratch.getProject = function(projectID, cb) {
   request({
@@ -106,6 +92,22 @@ Scratch.getProject = function(projectID, cb) {
     }
   });
 };
+
+Scratch.getStudio = function(studioID, offset, cb) {
+  request({
+    hostname: S3_STUDIOS_SERVER,
+    path: '/studios/' + studioID + '/projects?offset=' + offset + '/get/',
+    method: 'GET'
+  }, function(err, body, response) {
+    if (err) return cb(err);
+    try {
+      cb(null, JSON.parse(body));
+    } catch (e) {
+      cb(e);
+    }
+  });
+};
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 Scratch.UserSession = function(username, id, sessionId) {
