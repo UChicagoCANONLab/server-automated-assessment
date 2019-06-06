@@ -21,10 +21,10 @@ app.get('/:id', function(req, res, next) {
 	      if(err) {
 	      	console.log(err);
 					//res.status(404).send("404 - cannot find. hi");
-					res.send(JSON.stringify(project));
+					res.send(project);
 	      }
 	      else {
-	      	res.send(JSON.stringify(project));
+	      	res.send(project);
 	      }
     	});
  });
