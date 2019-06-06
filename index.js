@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 console.log('Hello from index.js!');
 
-app.get('/project/:id', function(req, res, next) {
+app.get('/scratch/project/:id', function(req, res, next) {
 		var id = req.params.id;
 		console.log('Getting project ' + id);
 	    Scratch.getProject(id,function(err,project) {
@@ -28,14 +28,14 @@ app.get('/project/:id', function(req, res, next) {
 	      }
 	      else {
 					res.send(JSON.stringify(project));
-					console.log('hello');
+					console.log(project);
 	      }
     	});
  });
 
 /// S3 additions
 /////////////////////////////////////////////////////////////////////////////////////////
-app.get('/studios3/:id/:offset', function(req, res, next) {
+app.get('/scratch/studio/:id/:offset', function(req, res, next) {
 	var id = req.params.id;
 	var offset = req.params.offset;
 		Scratch.getStudioS3(id, offset, function(err,studio) {
