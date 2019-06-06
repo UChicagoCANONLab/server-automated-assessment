@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 console.log('Hello from index.js!');
 
-app.get('/:id', function(req, res, next) {
+app.get('/project/:id', function(req, res, next) {
 		var id = req.params.id;
 		console.log('Getting project ' + id);
 	    Scratch.getProject(id,function(err,project) {
