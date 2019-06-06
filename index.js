@@ -31,10 +31,10 @@ app.get('/scratch/project/:id', function(req, res, next) {
 				});
  });
 
-app.get('/scratch/studio/:id/:offset', function(req, res, next) {
+app.get('/scratch/studio/:id/offset/:offset', function(req, res, next) {
 		var id = req.params.id;
 		var offset = req.params.offset;
-		console.log('Getting page ' + offset + ' of studio ' + id);
+		console.log('Getting studio ' + id + '(offset: ' + offset + ')');
 				Scratch.getStudio(id, offset, function(err, studio) {
 					if (err) {
 							console.log('Error\n' + err);
