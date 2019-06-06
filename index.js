@@ -16,15 +16,18 @@ app.use(cors());
 console.log('Hello from index.js!');
 
 app.get('/:id', function(req, res, next) {
-    var id = req.params.id;
+		var id = req.params.id;
+		console.log('Getting project ' + id);
 	    Scratch.getProject(id,function(err,project) {
 	      if(err) {
-	      	console.log(err);
+					console.log(err);
+					console.log('hi');
 					//res.status(404).send("404 - cannot find. hi");
-					res.send(project);
+					res.send(err);
 	      }
 	      else {
-	      	res.send(project);
+					res.send(project);
+					console.log('hello');
 	      }
     	});
  });
