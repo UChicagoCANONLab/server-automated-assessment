@@ -31,6 +31,20 @@ app.get('/scratch/project/:id', function(req, res, next) {
 				});
  });
 
+ app.get('/scratch/projectpage/:id', function(req, res, next) {
+	var id = req.params.id;
+	console.log('Getting project page ' + id);
+		Scratch.getProjectPage(id, function(err, projectPage) {
+					if (err) {
+							console.log('Error\n' + err);
+							res.status(404).send("404 - resource not found.");
+					}
+					else {
+							res.send(JSON.stringify(projectPage));
+					}
+			});
+});
+
 app.get('/scratch/studio/:id/offset/:offset', function(req, res, next) {
 		var id = req.params.id;
 		var offset = req.params.offset;
@@ -44,16 +58,16 @@ app.get('/scratch/studio/:id/offset/:offset', function(req, res, next) {
 							res.send(JSON.stringify(studio));
 					}
 			});
-}); 
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/pdf_gen/:id', function(req, res, next) {
-	
+
 	var id = req.params.id;
 	var url = 'https://scratch.mit.edu/studios/' + id + '/';
 	//res.send(url);
-	
+
 	var name = 'up' + Date.now() + '/'
   	mkdirp(name, function(err) {});
 	const child = execFile('./run_unit2gen.sh', [url, name, 'template/'], (error, stdout, stderr) => {
@@ -67,13 +81,13 @@ app.get('/pdf_gen/:id', function(req, res, next) {
 	  	res.sendFile(path.join(__dirname, name, 'all_tests.pdf'));
 	  	rimraf(name, function () { console.log('done'); });
 	  }
-	  
- 	});
- 	
-	
 
-	
-  
+ 	});
+
+
+
+
+
 });
 
 app.listen(port, function() {console.log(`Example app listening on port http://localhost:${port}/`)});

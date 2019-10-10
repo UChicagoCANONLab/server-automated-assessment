@@ -93,6 +93,21 @@ Scratch.getProject = function(projectID, cb) {
   });
 };
 
+Scratch.getProjectPage = function(projectID, cb) {
+  request({
+    hostname: 'https://scratch.mit.edu/projects/',
+    path: '/' + projectID,
+    method: 'GET'
+  }, function(err, body, response) {
+    if (err) return cb(err);
+    try {
+      cb(null, JSON.parse(body));
+    } catch (e) {
+      cb(e);
+    }
+  });
+};
+
 Scratch.getStudio = function(studioID, offset, cb) {
   request({
     hostname: S3_STUDIOS_SERVER,
@@ -383,5 +398,3 @@ Scratch.CloudSession.prototype._addVariable = function(name, value) {
 };
 
 module.exports = Scratch;
-
-
