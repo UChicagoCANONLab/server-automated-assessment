@@ -37,7 +37,7 @@ app.get('/scratch/project/:id', function(req, res, next) {
 		Scratch.getProjectPage(id, function(err, projectPage) {
 					if (err) {
 							console.log('Error\n' + err);
-							res.status(404).send("404 - resource not found.\n" + err);
+							res.status(404).send("404 - resource not found.\n" + err + '\n' + projectPage);
 					}
 					else {
 							res.send(projectPage);
