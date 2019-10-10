@@ -95,8 +95,8 @@ Scratch.getProject = function(projectID, cb) {
 
 Scratch.getProjectPage = function(projectID, cb) {
   request({
-    hostname: 'https://scratch.mit.edu/projects',
-    path: '/' + projectID,
+    hostname: 'scratch.mit.edu',
+    path: '/projects/' + projectID,
     method: 'GET'
   }, function(err, body, response) {
     if (err) return cb(err);
