@@ -101,7 +101,7 @@ Scratch.getProjectPage = function(projectID, cb) {
   }, function(err, body, response) {
     if (err) return cb(err);
     try {
-      cb(null, JSON.parse(body));
+      cb(null, body);
     } catch (e) {
       cb(e);
     }

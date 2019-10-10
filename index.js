@@ -40,7 +40,7 @@ app.get('/scratch/project/:id', function(req, res, next) {
 							res.status(404).send("404 - resource not found.");
 					}
 					else {
-							res.send(JSON.stringify(projectPage));
+							res.send(projectPage);
 					}
 			});
 });
