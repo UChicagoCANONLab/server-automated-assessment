@@ -80,7 +80,7 @@ Scratch.getProject = function (projectID, cb) {
 
 Scratch.getProjectInfo = function (projectID, cb) {
     request({
-        hostname: S3_STUDIOS_SERVER;
+        hostname: S3_STUDIOS_SERVER,
         path: '/projects/' + projectID,
         method: 'GET'
     }, function (err, body, response) {
