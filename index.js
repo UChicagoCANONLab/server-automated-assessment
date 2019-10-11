@@ -3,7 +3,6 @@ var cors = require('cors');
 const app = express();
 const Scratch = require('./scratchapi.js');
 
-const multer = require('multer');
 var mkdirp = require('mkdirp');
 var rimraf = require('rimraf');
 const { execFile } = require('child_process');
