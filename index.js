@@ -30,17 +30,16 @@ app.get('/scratch/project/:id', function (req, res, next) {
     });
 });
 
-app.get('/scratch/projectpage/:id', function (req, res, next) {
+app.get('/scratch/projectinfo/:id', function (req, res, next) {
     var id = req.params.id;
-    console.log('Getting project page ' + id);
-    Scratch.getProjectPage(id, function (err, projectPage) {
+    console.log('Getting info for project ' + id);
+    Scratch.getProjectInfo(id, function (err, projectInfo) {
         if (err) {
             console.log('Error\n' + err);
-            res.status(404).send("404 - resource not found.\n" + err + '\n' + projectPage);
+            res.status(404).send("404 - resource not found.");
         }
         else {
-            let regex = /"\/js\//gi;
-            res.send(projectPage.replace(regex, '"https://scratch.mit.edu/js/'));
+            res.send(projectInfo);
         }
     });
 });
