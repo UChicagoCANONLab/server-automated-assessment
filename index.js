@@ -40,7 +40,7 @@ app.get('/scratch/project/:id', function(req, res, next) {
 							res.status(404).send("404 - resource not found.\n" + err + '\n' + projectPage);
 					}
 					else {
-							res.send(projectPage);
+						res.send(projectPage.replace('"/js/', '"https://scratch.mit.edu/js/'));
 					}
 			});
 });
